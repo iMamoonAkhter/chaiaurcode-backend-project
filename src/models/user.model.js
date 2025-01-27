@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema({
         required:true,
         
     },
-    coverImae: {
+    coverImage: {
         type: String,
 
     },
