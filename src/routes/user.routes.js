@@ -14,6 +14,7 @@ import {
 } from "../controllers/user.controller.js";
 import { upload } from "../middlewares/multer.middleware.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
+import { messageService, verifyOTP } from "../utils/service.js";
 const router = Router();
 
 router.route("/register").post(
@@ -46,4 +47,8 @@ router
   .patch(verifyJWT, upload.single("coverImage"), updateUserCoverImage);
 router.route("/c/:username").get(verifyJWT, getUserChannelProfile);
 router.route("/history").get(verifyJWT, getWatchHistory);
+//OTP route
+router.route("/otp").post(messageService);
+router.route("/verify").post(verifyOTP);
+
 export default router;
