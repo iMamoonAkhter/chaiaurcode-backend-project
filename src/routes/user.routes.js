@@ -14,7 +14,7 @@ import {
 } from "../controllers/user.controller.js";
 import { upload } from "../middlewares/multer.middleware.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
-import { messageService, verifyOTP } from "../utils/service.js";
+import { contactFormSubmission, sendOTP, twilioMessageService, verifyOTP } from "../utils/service.js";
 const router = Router();
 
 router.route("/register").post(
@@ -48,7 +48,8 @@ router
 router.route("/c/:username").get(verifyJWT, getUserChannelProfile);
 router.route("/history").get(verifyJWT, getWatchHistory);
 //OTP route
-router.route("/otp").post(messageService);
+router.route("/otp").post(twilioMessageService);
+router.route("/otp-email").post(sendOTP)
 router.route("/verify").post(verifyOTP);
-
+router.route("/nodemailer").post(contactFormSubmission)
 export default router;
