@@ -154,8 +154,7 @@ export const verifyOTP = async (req, res) => {
 
         // Clear OTP after successful verification (to prevent reuse)
         delete otpData[email];
-        //Using email, generate the refresh token and store
-        
+        //Using email, generate the token and store
         // Respond with success
         return res.status(200).json(new ApiResponse(200, "Verified OTP Successfully!", email));
     } catch (error) {
