@@ -272,7 +272,7 @@ const updateUserAvatar = asyncHandler(async(req, res)=>{
     if(avatarToDelete && updatedUser?.avatar?.public_id){
         await deleteOnCloudinary(avatarToDelete);
     }
-    //delete old image
+
     return res
     .status(200)
     .json(

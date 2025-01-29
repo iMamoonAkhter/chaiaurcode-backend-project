@@ -154,9 +154,10 @@ export const verifyOTP = async (req, res) => {
 
         // Clear OTP after successful verification (to prevent reuse)
         delete otpData[email];
-
+        //Using email, generate the refresh token and store
+        
         // Respond with success
-        return res.status(200).json(new ApiResponse(200, "Verified OTP Successfully!"));
+        return res.status(200).json(new ApiResponse(200, "Verified OTP Successfully!", email));
     } catch (error) {
         console.log(error.message);
         throw new ApiError(500, "Internal Error during verification");
@@ -174,6 +175,8 @@ const sendEmailOTP = async (options) => {
       pass: process.env.AUTHENTICATION_PASSWORD,
     },
   });
+
+  //Check the email exist or not in database
 
   const mailOptions = {
     from: `"Backend Services" <${process.env.AUTHENTICATION_EMAIL}>`,  // Sender
