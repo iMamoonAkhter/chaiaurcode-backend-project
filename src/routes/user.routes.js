@@ -15,6 +15,7 @@ import {
 import { upload } from "../middlewares/multer.middleware.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import { contactFormSubmission, sendOTP, twilioMessageService, verifyOTP } from "../utils/service.js";
+import { completeUserRegistration, initiateRegistration, verifyOTPAndCompleteRegistration } from "../utils/OTP_services.js";
 const router = Router();
 
 router.route("/register").post(
@@ -52,4 +53,19 @@ router.route("/otp").post(twilioMessageService);
 router.route("/otp-email").post(sendOTP)
 router.route("/verify").post(verifyOTP);
 router.route("/nodemailer").post(contactFormSubmission)
+
+router.post("/register/initiate", initiateRegistration);
+
+// Step 2: Verify OTP
+router.post("/register/verify", verifyOTPAndCompleteRegistration);
+
+// Step 3: Upload files & complete registration
+router.post(
+    "/register/complete",
+    upload.fields([
+        { name: "avatar", maxCount: 1 },
+        { name: "coverImage", maxCount: 1 }
+    ]),
+    completeUserRegistration
+);
 export default router;
