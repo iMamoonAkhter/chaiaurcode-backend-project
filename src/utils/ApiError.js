@@ -29,7 +29,7 @@ function ApiError(statusCode, message = "Something went wrong", errors = [], sta
 
     // Add custom properties
     error.statusCode = statusCode;
-    error.data = null;
+    error.data = message;
     error.success = false;
     error.errors = errors;
 
