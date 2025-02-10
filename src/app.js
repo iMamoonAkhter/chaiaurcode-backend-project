@@ -25,5 +25,5 @@ import router_url from "./routes/shortURL.routes.js"
 
 //routes decalartion
 app.use("/api/v1/users", userRouter)
-app.use("/api/v1/url/", router_url);
+app.use("/api/v1/url", router_url);
 export { app }
