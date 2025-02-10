@@ -11,7 +11,7 @@ let v2 = "MG59c6835e3a2225befd08b2ab37b059b7";
 let digits = "0123456789";
 export const twilioMessageService = async (req, res) => {
     try {
-        const number = "+923217902988"; // Include "+" for E.164 format
+        const number = "+923270902251"; // Include "+" for E.164 format
         const username = "Mamoon";
         OTP = "";
         for (let i = 0; i < 4; i++) {
